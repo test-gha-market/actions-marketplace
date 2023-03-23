@@ -16,7 +16,7 @@ body {
 }
 
 .panel {
-    border: solid 1px #155799;
+    border: solid 1px #d11e8f;
     min-height: 285px;
     margin: 5px 5px 5px 5px;
     padding: 5px 5px 5px 5px;
@@ -45,7 +45,7 @@ body {
 }
 
 .panel {
-    border: solid 1px #155799;
+    border: solid 1px #d11e8f;
     min-height: 285px;
     margin: 5px 5px 5px 5px;
     padding: 5px 5px 5px 5px;
@@ -77,7 +77,7 @@ body {
 .page-header {
     color: #fff;
     text-align: center;
-    background-color: #159957;
+    background-color: #b30387;
     background-image: linear-gradient(
 120deg
 , #d11e8f, #b30387);
@@ -236,10 +236,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .page-header {
     color: #fff;
     text-align: center;
-    background-color: #159957;
+    background-color: #b30387;
     background-image: linear-gradient(
 120deg
-, #155799, #159957);
+, #d11e8f, #b30387);
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em){
