@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: test-gha-market/load-available-actions@v1.2.12
+    - uses: test-gha-market/load-available-actions@v1.2.27
       name: Load available actions
       id: load-actions
       with:
