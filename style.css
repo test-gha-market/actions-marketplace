@@ -16,7 +16,7 @@ body {
 }
 
 .panel {
-    border: solid 1px #155799;
+    border: solid 1px #f4460c;
     min-height: 285px;
     margin: 5px 5px 5px 5px;
     padding: 5px 5px 5px 5px;
@@ -48,10 +48,10 @@ body {
 .page-header {
     color: #fff;
     text-align: center;
-    background-color: #159957;
+    background-color: #991574;
     background-image: linear-gradient(
 120deg
-, #155799, #159957);
+, #e66516, #f4e112);
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em){
@@ -98,7 +98,7 @@ h1 {
     font-size: 0.9rem;
 }
 a {
-    color: #1e6bb8;
+    color: #f87234;
     text-decoration: none;
 }
 
