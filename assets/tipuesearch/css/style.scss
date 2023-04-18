@@ -1,7 +1,7 @@
 ---
 ---
 
-@import "{{ site.theme }}";
+// @import "{{ site.theme }}";
 
 {% if page.tipue_search_active or layout.tipue_search_active %}
 <link rel="stylesheet" href="{{ "/actions-marketplace/assets/tipuesearch/css/normalize.css" | relative_url }}">
