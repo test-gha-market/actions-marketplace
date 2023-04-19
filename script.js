@@ -1,9 +1,10 @@
 var jsonFileToUrl = 'actions-data-url.txt';
 var jsonUrl = 'actions-data.json';
 
+// Locate the card elements
+let panel = document.querySelectorAll('.panel')
+
 function liveSearch() {
-    // Locate the card elements
-    let panel = document.querySelectorAll('.panel')
     // Locate the search input
     let search_query = document.getElementById("searchbox").value;
     // Loop through the panel
