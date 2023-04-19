@@ -3,23 +3,33 @@ var jsonUrl = 'actions-data.json';
 
 function liveSearch() {
     // Locate the card elements
-    let cards = document.querySelectorAll('.panel')
+    let panel = document.querySelectorAll('.panel')
     // Locate the search input
     let search_query = document.getElementById("searchbox").value;
-    // Loop through the cards
-    for (var i = 0; i < cards.length; i++) {
-      // If the text is within the card...
-      if(cards[i].innerText.toLowerCase()
-        // ...and the text matches the search query...
-        .includes(search_query.toLowerCase())) {
-          // ...remove the `.is-hidden` class.
-          cards[i].classList.remove("is-hidden");
-      } else {
-        // Otherwise, add the class.
-        cards[i].classList.add("is-hidden");
-      }
+    // Loop through the panel
+    for (var i = 0; i < panel.length; i++) {
+        // If the text is within the card...
+        if (panel[i].innerText.toLowerCase()
+            // ...and the text matches the search query...
+            .includes(search_query.toLowerCase())) {
+            // ...remove the `.is-hidden` class.
+            panel[i].classList.remove("is-hidden");
+        } else {
+            // Otherwise, add the class.
+            panel[i].classList.add("is-hidden");
+        }
     }
-  }
+}
+
+//A little delay
+let typingTimer;
+let typeInterval = 500;
+let searchInput = document.getElementById('searchbox');
+
+searchInput.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(liveSearch, typeInterval);
+});
 
 function loadFile(url, isJson, callback) {
     var xobj = new XMLHttpRequest();
@@ -41,10 +51,10 @@ function addActionPanel(mainElement, action) {
     var panel = document.createElement('div');
     panel.className = "panel";
     panel.id = action.repo
-    panel.innerHTML = '<div class="line"><span class="name">Repository:</span><span class="value"><a href="https://github.com/test-gha-market/'+action.repo+'">'+action.repo+'</a></span></div>';
-    panel.innerHTML += '<div class="line"><span class="name">Action:</span><span class="value">'+action.name+'</span></div>';
-    panel.innerHTML += '<div class="line"><span class="name">Author:</span><span class="value">'+(action.author || "Not set") +'</span></div>';
-    panel.innerHTML += '<div class="line"><span class="name">Description:</span><div class="value description">'+action.description+'</div></div>';
+    panel.innerHTML = '<div class="line"><span class="name">Repository:</span><span class="value"><a href="https://github.com/test-gha-market/' + action.repo + '">' + action.repo + '</a></span></div>';
+    panel.innerHTML += '<div class="line"><span class="name">Action:</span><span class="value">' + action.name + '</span></div>';
+    panel.innerHTML += '<div class="line"><span class="name">Author:</span><span class="value">' + (action.author || "Not set") + '</span></div>';
+    panel.innerHTML += '<div class="line"><span class="name">Description:</span><div class="value description">' + action.description + '</div></div>';
 
     mainElement.appendChild(panel);
 }
@@ -65,11 +75,11 @@ function setLastUpdated(lastUpdated) {
 }
 
 function init() {
-    loadFile(jsonFileToUrl, false, function(response) {
+    loadFile(jsonFileToUrl, false, function (response) {
         console.log('found file with content' + response);
         var jsonFileToUrl = response;
 
-        loadFile(jsonFileToUrl, true, function(response) {
+        loadFile(jsonFileToUrl, true, function (response) {
             var json = JSON.parse(response);
             var mainElement = document.getElementById('main');
             var actionCountElement = document.getElementById('actionCount');
@@ -79,12 +89,13 @@ function init() {
             actionsOwnerElement.innerHTML = json.organization ? json.organization : json.user;
             setLastUpdated(json.lastUpdated);
 
-            for(var index in json.actions) {
+            for (var index in json.actions) {
                 var action = json.actions[index];
 
                 addActionPanel(mainElement, action);
             }
         }
-        )}
+        )
+    }
     )
 }
