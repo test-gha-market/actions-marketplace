@@ -1,10 +1,9 @@
 var jsonFileToUrl = 'actions-data-url.txt';
 var jsonUrl = 'actions-data.json';
 
-// Locate the card elements
-let panel = document.querySelectorAll('.panel')
-
 function liveSearch() {
+    // Locate the card elements
+    let panel = document.querySelectorAll('.panel')
     // Locate the search input
     let search_query = document.getElementById("searchbox").value;
     // Loop through the panel
@@ -21,16 +20,6 @@ function liveSearch() {
         }
     }
 }
-
-//A little delay
-let typingTimer;
-let typeInterval = 500;
-let searchInput = document.getElementById('searchbox');
-
-searchInput.addEventListener('keyup', () => {
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(liveSearch, typeInterval);
-});
 
 function loadFile(url, isJson, callback) {
     var xobj = new XMLHttpRequest();
