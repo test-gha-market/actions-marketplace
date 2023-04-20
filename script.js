@@ -44,6 +44,7 @@ function addActionPanel(mainElement, action) {
     panel.innerHTML = '<div class="line"><span class="name">Repository:</span><span class="value"><a href="https://github.com/test-gha-market/' + action.repo + '">' + action.repo + '</a></span></div>';
     panel.innerHTML += '<div class="line"><span class="name">Action:</span><span class="value">' + action.name + '</span></div>';
     panel.innerHTML += '<div class="line"><span class="name">Author:</span><span class="value">' + (action.author || "Not set") + '</span></div>';
+    panel.innerHTML += '<div class="line"><span class="name">Fork of:</span><span class="value">' + (action.forkedfrom || "Not set") + '</span></div>';
     panel.innerHTML += '<div class="line"><span class="name">Description:</span><div class="value description">' + action.description + '</div></div>';
 
     mainElement.appendChild(panel);
