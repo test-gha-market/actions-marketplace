@@ -16,35 +16,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: test-gha-market/load-available-actions@v1.2.12
+    - uses: test-gha-market/load-available-actions@v2.1.3
       name: Load available actions
       id: load-actions
       with:
         PAT: ${{ secrets.PAT_GITHUB }}
         user: ${{ github.repository_owner }}
 
-    # todo: convert this part into an action to make it more transferable. Don't forget to update the readme then!
-    - run: npm install fs
-    - uses: actions/github-script@v6
-      with:
-        script: |
-          let actions = '${{ steps.load-actions.outputs.actions }}';
-          const fs = require("fs");
-          const fileName = 'actions-data.json';
-          fs.writeFileSync(fileName, actions, function(err) {
-            if(err) {
-              return console.log("error")
-            }
-          })
+    - name: Update filename
+      id: filename
+      run: |
+        filename="actions-data.json"
+        mv ${{ steps.load-actions.outputs.actions-file-path }} $filename
+        echo "filename=$filename" >> $GITHUB_OUTPUT
 
     - name: Upload result file as artefact
       uses: actions/upload-artifact@v3
       with:
         name: actions
-        path: actions-data.json
+        path: ${{ steps.filename.outputs.filename }}
 
     - name: Upload json to this repository
-      #uses: LasyIsLazy/github-upload-action@v0.1.0
+      # fork of LasyIsLazy/github-upload-action
       uses: test-gha-market/github-upload-action@v0.2.0
       with:
         access-token: ${{ secrets.PAT_GITHUB }}
